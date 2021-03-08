@@ -19,7 +19,7 @@ const Review = () => {
     },[]);
 
     const removeItemHandler = productKey => {
-        const newCart = cart.filter(pd => pd.key != productKey);
+        const newCart = cart.filter(pd => pd.key !== productKey);
         setCart(newCart);
         removeFromDatabaseCart(productKey);
     };
