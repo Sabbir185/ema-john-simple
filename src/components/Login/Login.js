@@ -4,6 +4,7 @@ import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import './Login.css';
 import { UserContext } from '../../App';
+import { useHistory, useLocation } from 'react-router';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -31,6 +32,11 @@ function Login() {
 
   // context api
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  // PrivateRoute allow after authentication
+  let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
 
   const handleSignIn = () =>{
     firebase.auth()
@@ -92,7 +98,7 @@ function Login() {
         });
     }
 
-    // user sign in
+    // old user sign in
     if(!newUser && user.email && user.password){
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
       .then( res => {
@@ -101,6 +107,7 @@ function Login() {
           newUserInfo.success = true;
           setUser(newUserInfo);
           setLoggedInUser(newUserInfo);
+          history.replace(from);
           console.log('sign in info ', res.user);
       })
       .catch((error) => {
