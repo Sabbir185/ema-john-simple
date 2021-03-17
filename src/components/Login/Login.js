@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import './Login.css';
+import { UserContext } from '../../App';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -27,6 +28,9 @@ function Login() {
     error:'',
     success: false
   })
+
+  // context api
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   const handleSignIn = () =>{
     firebase.auth()
@@ -96,6 +100,7 @@ function Login() {
           newUserInfo.error = '';
           newUserInfo.success = true;
           setUser(newUserInfo);
+          setLoggedInUser(newUserInfo);
           console.log('sign in info ', res.user);
       })
       .catch((error) => {
