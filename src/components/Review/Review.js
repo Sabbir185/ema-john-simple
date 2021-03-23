@@ -10,6 +10,8 @@ const Review = () => {
     const [cart, setCart] = useState([]);
     const [orderPlace, setOrderPlace] = useState(false);
 
+    document.title = 'Review';
+
     useEffect(()=>{
         // from cart
         const saveCart = getDatabaseCart();

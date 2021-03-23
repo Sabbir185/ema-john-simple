@@ -12,6 +12,8 @@ const Shop = () => {
     const [products, setProduct] = useState(first10);
     const [cart, setCart] = useState([]);
 
+    document.title = 'Shop';
+
     useEffect(()=>{
         const saveCart = getDatabaseCart();
         const productKeys = Object.keys(saveCart);
@@ -45,6 +47,10 @@ const Shop = () => {
     return (
         <div className='shop-container'>
             <div className='product-container'>
+
+                {
+                    products.length === 0 && <p>Loading....</p>
+                }
                
                 {
                     products.map(pd => <Product key={pd.key} addCart={true} product={pd} handleAddProduct={handleAddProduct}></Product> )
