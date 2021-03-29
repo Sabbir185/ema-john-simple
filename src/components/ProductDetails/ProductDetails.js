@@ -10,7 +10,7 @@ const ProductDetails = () => {
         .then(res=> res.json())
         .then(data=> setProduct(data));
     },[productKey])
-    // const product = fakeData.find(pd => pd.key === productKey);
+   
     return (
         <div>
             <h1>{productKey} Product details</h1>
