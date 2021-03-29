@@ -6,7 +6,7 @@ const ProductDetails = () => {
     const {productKey} = useParams();
     const [product, setProduct] = useState({});
     useEffect(()=>{
-        fetch(`http://localhost:5000/product/${productKey}`)
+        fetch(`https://mighty-peak-71961.herokuapp.com/product/${productKey}`)
         .then(res=> res.json())
         .then(data=> setProduct(data));
     },[productKey])

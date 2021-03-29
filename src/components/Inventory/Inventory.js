@@ -5,7 +5,7 @@ const Inventory = () => {
 
     const productHandler = () => {
         const product = {};
-        fetch('http://localhost:5000/addProducts',{
+        fetch('https://mighty-peak-71961.herokuapp.com/addProducts',{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(product)

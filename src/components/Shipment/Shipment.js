@@ -13,7 +13,7 @@ const Shipment = () => {
         const savedCart = getDatabaseCart();
         const orderDetails = {...loggedInUser, products: savedCart, shipment: data, orderTime: new Date()}
 
-        fetch('http://localhost:5000/addNewOrder',{
+        fetch('https://mighty-peak-71961.herokuapp.com/addNewOrder',{
             method:'POST',
             headers:{'Content-Type':'application/json'},
             body: JSON.stringify(orderDetails)
